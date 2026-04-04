@@ -73,7 +73,7 @@
             <p>OwO</p>
             
             <p>Liczba wszystkich gości na blogu:<br>
-                <img src="https://profile-counter.glitch.me/moj-super-purfle-blog/count.svg" alt="Licznik wizyt">
+                <img src="https://komarev.com/ghpvc/?username=moj-super-purfle-blog&style=plastic&color=green&label=Wyświetlenia+strony" alt="Licznik wizyt" style="margin-top: 5px;">
             </p>
             
             <p>Twoja ostatnia wizyta: <strong id="data-wizyty" style="color: #FFFF00;">Nigdy</strong></p>
@@ -81,14 +81,12 @@
         </div>
 
         <script>
-            // Skrypt teraz zajmuje się tylko datą Twoich odwiedzin
             let dzisiaj = new Date();
             let ladnaData = dzisiaj.toLocaleString('pl-PL');
 
             let ostatniaWizyta = localStorage.getItem('moja_data') || 'To twój pierwszy raz!';
             document.getElementById('data-wizyty').innerText = ostatniaWizyta;
 
-            // Zapisujemy dzisiejszą datę dla Twojej przeglądarki na następny raz
             localStorage.setItem('moja_data', ladnaData);
         </script>
     </div>
