@@ -57,6 +57,8 @@
     <div class="container">
         <marquee scrollamount="10"><h1>WITAJ NA MOIM BLOGU!!!</h1></marquee>
         
+        <img src="https://media.tenor.com/J12sX7X-m_8AAAAi/under-construction-90s.gif" alt="Strona w budowie" style="margin-bottom: 10px;">
+        
         <p>Witaj na Purfe'owskim blogu!!!! <span class="blink">TESTOWA STRONA!</span></p>
 
         <hr>
@@ -64,18 +66,19 @@
         <div class="post">
             <h2>Wpis nr 1: Początki</h2>
             <p><strong>Data:</strong> 04.04.2026</p>
-            <p>Zaczynam pisać bloga. Będzie śmiesznie, bo nie mam kompletnie umiejętności pisania w HTML, ale za to mam darmowy chat-gpt u lewej ręki, i wsparcie reddit'a u prawej xD </p>
+            
+            <p>Zaczynam pisać bloga.<br>
+            Będzie śmiesznie, bo nie mam kompletnie umiejętności pisania w HTML, ale za to mam darmowy chat-gpt u lewej ręki, i wsparcie reddit'a u prawej xD</p>
+            
+            <p>Jeśli chodzi o ogarnięcie strony, github'a i tak dalej, AI poleciło utworzyć "organizację GitHub", i hostowanie stronki przez repo na nią utworzone. Działa? Działa.<br>
+            Przynajmniej link jest fajny :)</p>
+            
+            <p>Kolejny wpis? Raczej jutro :D</p>
         </div>
 
         <hr>
 
         <div class="footer">
-            <p>OwO</p>
-            
-            <p>Liczba wszystkich gości na blogu:<br>
-                <img id="global-counter" src="https://komarev.com/ghpvc/?username=moj-super-purfle-blog&style=plastic&color=green&label=Wyświetlenia+strony" alt="Licznik wizyt" style="margin-top: 5px;">
-            </p>
-            
             <p>Twoja ostatnia wizyta: <strong id="data-wizyty" style="color: #FFFF00;">Nigdy</strong></p>
             <a href="#">Powrót na górę</a>
         </div>
@@ -88,11 +91,6 @@
             document.getElementById('data-wizyty').innerText = ostatniaWizyta;
 
             localStorage.setItem('moja_data', ladnaData);
-
-            // Trik omijający cache przeglądarki!
-            // Doklejamy do obrazka aktualny czas, żeby przeglądarka zawsze pobierała nową wersję.
-            let licznik = document.getElementById('global-counter');
-            licznik.src = licznik.src + "&time=" + new Date().getTime();
         </script>
     </div>
 </body>
