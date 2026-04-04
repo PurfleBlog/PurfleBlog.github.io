@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purfle Blog</title>
+    <style>
+        /* Styl z lat 90. */
+        body {
+            background-color: #000080; /* Klasyczny granatowy */
+            color: #00FF00; /* Neonowa zieleń */
+            font-family: "Comic Sans MS", "Times New Roman", serif;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #000000;
+            border: 5px ridge #C0C0C0;
+            padding: 20px;
+        }
+        h1 {
+            color: #FF00FF;
+            text-decoration: underline;
+        }
+        h2 {
+            color: #FFFF00;
+            text-align: left;
+        }
+        /* Symulacja kultowego tagu <blink> */
+        .blink {
+            animation: blinker 1s linear infinite;
+            color: #FF0000;
+            font-weight: bold;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+        a {
+            color: #00FFFF;
+        }
+        .post {
+            text-align: left;
+            border: 1px dashed #00FF00;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            border-top: 1px solid #00FF00;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <marquee scrollamount="10"><h1>WITAJ NA MOIM BLOGU!!!</h1></marquee>
+        
+        <p>Witaj na Purfe'owskim blogu!!!! <span class="blink">TESTOWA STRONA!</span></p>
+
+        <hr>
+
+        <div class="post">
+            <h2>Wpis nr 1: Początki</h2>
+            <p><strong>Data:</strong> 04.04.2026</p>
+            <p>Zaczynam pisać bloga. Będzie śmiesznie, bo nie mam kompletnie umiejętności pisania w HTML, ale za to mam darmowy chat-gpt u lewej ręki, i wsparcie reddit'a u prawej xD </p>
+        </div>
+
+        <hr>
+
+        <div class="footer">
+            <p>OwO</p>
+            
+            <p>Liczba wszystkich gości na blogu:<br>
+                <img src="https://profile-counter.glitch.me/moj-super-purfle-blog/count.svg" alt="Licznik wizyt">
+            </p>
+            
+            <p>Twoja ostatnia wizyta: <strong id="data-wizyty" style="color: #FFFF00;">Nigdy</strong></p>
+            <a href="#">Powrót na górę</a>
+        </div>
+
+        <script>
+            // Skrypt teraz zajmuje się tylko datą Twoich odwiedzin
+            let dzisiaj = new Date();
+            let ladnaData = dzisiaj.toLocaleString('pl-PL');
+
+            let ostatniaWizyta = localStorage.getItem('moja_data') || 'To twój pierwszy raz!';
+            document.getElementById('data-wizyty').innerText = ostatniaWizyta;
+
+            // Zapisujemy dzisiejszą datę dla Twojej przeglądarki na następny raz
+            localStorage.setItem('moja_data', ladnaData);
+        </script>
+    </div>
+</body>
+</html>
