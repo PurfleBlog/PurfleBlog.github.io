@@ -73,7 +73,7 @@
             <p>OwO</p>
             
             <p>Liczba wszystkich gości na blogu:<br>
-                <img src="https://komarev.com/ghpvc/?username=moj-super-purfle-blog&style=plastic&color=green&label=Wyświetlenia+strony" alt="Licznik wizyt" style="margin-top: 5px;">
+                <img id="global-counter" src="https://komarev.com/ghpvc/?username=moj-super-purfle-blog&style=plastic&color=green&label=Wyświetlenia+strony" alt="Licznik wizyt" style="margin-top: 5px;">
             </p>
             
             <p>Twoja ostatnia wizyta: <strong id="data-wizyty" style="color: #FFFF00;">Nigdy</strong></p>
@@ -88,6 +88,11 @@
             document.getElementById('data-wizyty').innerText = ostatniaWizyta;
 
             localStorage.setItem('moja_data', ladnaData);
+
+            // Trik omijający cache przeglądarki!
+            // Doklejamy do obrazka aktualny czas, żeby przeglądarka zawsze pobierała nową wersję.
+            let licznik = document.getElementById('global-counter');
+            licznik.src = licznik.src + "&time=" + new Date().getTime();
         </script>
     </div>
 </body>
