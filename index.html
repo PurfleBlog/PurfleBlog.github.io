@@ -7,13 +7,16 @@
     <style>
         /* Styl z lat 90. */
         body {
-            background-color: #000080; /* Klasyczny granatowy */
-            color: #00FF00; /* Neonowa zieleń */
+            background-color: #000080;
+            color: #00FF00;
             font-family: "Comic Sans MS", "Times New Roman", serif;
             text-align: center;
+            margin: 0;
+            padding: 20px;
         }
         .container {
-            width: 80%;
+            width: 85%;
+            max-width: 1500px;
             margin: 0 auto;
             background-color: #000000;
             border: 5px ridge #C0C0C0;
@@ -27,11 +30,15 @@
             color: #FFFF00;
             text-align: left;
         }
-        /* Symulacja kultowego tagu <blink> */
         .blink {
             animation: blinker 1s linear infinite;
             color: #FF0000;
             font-weight: bold;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .blink {
+                animation: none;
+            }
         }
         @keyframes blinker {
             50% { opacity: 0; }
@@ -39,11 +46,20 @@
         a {
             color: #00FFFF;
         }
+        a[href="#"]:hover {
+            color: #FF00FF;
+            text-decoration: none;
+        }
         .post {
             text-align: left;
             border: 1px dashed #00FF00;
             padding: 10px;
             margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .post:hover {
+            background-color: #0a0a0a;
+            border-color: #FF00FF;
         }
         .footer {
             margin-top: 30px;
@@ -51,12 +67,91 @@
             border-top: 1px solid #00FF00;
             padding-top: 10px;
         }
-        /* Styl dla obrazka z wpisu */
         .post-image {
             display: block;
             margin: 20px auto;
             max-width: 100%;
+            height: auto;
             border: 3px double #00FFFF;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            body {
+                padding: 10px;
+            }
+            .content-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                max-width: 100%;
+            }
+        }
+        .posts-container {
+            margin-top: 20px;
+        }
+        
+        /* Layout dwukolumnowy */
+        .content-wrapper {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .posts-container {
+            flex: 2;
+        }
+        .sidebar {
+            flex: 1;
+            max-width: 280px;
+        }
+        
+        /* Ramka "O mnie" */
+        .about-box {
+            background-color: #000000;
+            border: 3px ridge #C0C0C0;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .about-box h3 {
+            color: #FF00FF;
+            text-align: center;
+            margin-top: 0;
+            border-bottom: 1px dashed #00FF00;
+            padding-bottom: 5px;
+        }
+        .about-box p {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        .about-box hr {
+            border-color: #00FF00;
+            margin: 10px 0;
+        }
+        
+        /* Styl licznika odwiedzin */
+        .counter-box {
+            display: inline-block;
+            background-color: #000000;
+            border: 2px ridge #C0C0C0;
+            padding: 8px 15px;
+            margin-top: 10px;
+        }
+        .counter-label {
+            color: #FFFF00;
+            font-size: 11px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .counter-value {
+            color: #FF00FF;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .counter-value img {
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -68,79 +163,154 @@
 
         <hr>
 
-        <div class="post">
-            <h2>Wpis nr 2: Zabawy z VPN'em</h2>
-            <p><strong style="color: #FF00FF;">Data:</strong> <span style="color: #FFFF00;">05.04.2026</span></p>
-            
-            <p>1. J pojech...well, <span style="color: #00FFFF;">POLECIAŁA</span> dzisiaj do Grecji.<br>
-            Nie będzie jej w Polsce przez najbliższy miesiąc. <br>
-            Bardzo mi przez to smutno, już mi jej brakuje :*(</p>
+        <div class="content-wrapper">
+            <div class="posts-container" id="posts-container">
+                <!-- ZNACZNIK_NOWYCH_WPISOW -->
+                
+                <!-- WPIS_2_START -->
+                <div class="post">
+                    <h2>Wpis nr 2: Zabawy z VPN'em</h2>
+                    <p><strong style="color: #FF00FF;">Data:</strong> <span style="color: #FFFF00;">05.04.2026</span></p>
+                    
+                    <p>1. J pojech...well, <span style="color: #00FFFF;">POLECIAŁA</span> dzisiaj do Grecji.<br>
+                    Nie będzie jej w Polsce przez najbliższy miesiąc. <br>
+                    Bardzo mi przez to smutno, już mi jej brakuje :*(</p>
 
-            <p>2. Od zamierzchłych czasów w moim domu jest coś zrypane z konfiguracją internetową.<br>
-            Nie jestem w stanie łączyć się z wieloma serwerami np. gier, między innymi do Fortnite oraz Valorant, co bardzo mnie irytuje. Niestety w tej okolicy jest to JEDYNY dostawca internetu, więc problemu w obecnej sytuacji NIE DA się rozwiązać. Nie wiem nawet jak się z nimi skontaktować, a nawet jeśli bym chciał (a próbowałem - wielokrotnie!), to rodzice mają do tego problem, i nie pozwalają "eskalować". Im działa, i ich to nie obchodzi.<br>
-            Rozumiem to, ale.....po prostu utrudnia to DLA MNIE kontakt, wspólną grę z rówieśnikami.</p>
+                    <p>2. Od zamierzchłych czasów w moim domu jest coś zrypane z konfiguracją internetową.<br>
+                    Nie jestem w stanie łączyć się z wieloma serwerami np. gier, między innymi do Fortnite oraz Valorant, co bardzo mnie irytuje. Niestety w tej okolicy jest to JEDYNY dostawca internetu, więc problemu w obecnej sytuacji NIE DA się rozwiązać. Nie wiem nawet jak się z nimi skontaktować, a nawet jeśli bym chciał (a próbowałem - wielokrotnie!), to rodzice mają do tego problem, i nie pozwalają "eskalować". Im działa, i ich to nie obchodzi.<br>
+                    Rozumiem to, ale.....po prostu utrudnia to DLA MNIE kontakt, wspólną grę z rówieśnikami.</p>
 
-            <p>Postanowiłem więc dziś spróbować VPN, wybór padł na "ProtonVPN" bo ma obecnie promocję na miesięczny okres próbny za 1zł.</p>
+                    <p>Postanowiłem więc dziś spróbować VPN, wybór padł na "ProtonVPN" bo ma obecnie promocję na miesięczny okres próbny za 1zł.</p>
 
-            <p>Zapłaciłem na telefonie w G-Play, pobrałem, i...<br>
-            No cóż. Na telefonie nie mogę korzystać, bo jest konflikt z AdGuard'em. Świetnie.</p>
+                    <p>Zapłaciłem na telefonie w G-Play, pobrałem, i...<br>
+                    No cóż. Na telefonie nie mogę korzystać, bo jest konflikt z AdGuard'em. Świetnie.</p>
 
-            <p>Zainstalowałem więc apkę na komputer, i......działa tylko jeden serwer w polsce, dodatkowo działa też tylko jeden protokół tzw. Wireguard (TCP).</p>
+                    <p>Zainstalowałem więc apkę na komputer, i......działa tylko jeden serwer w polsce, dodatkowo działa też tylko jeden protokół tzw. Wireguard (TCP).</p>
 
-            <p>No ale dobra, optymalizuję ustawienia, i odpalam Valorant'a.<br>
-            I co? Faktycznie pokazują się serwery, da się połączyć.<br>
-            Myślę sobie - "Super!" - , i dołączam do gry.<br>
-            I tu zaczyna się te wrażenie sypać...</p>
+                    <p>No ale dobra, optymalizuję ustawienia, i odpalam Valorant'a.<br>
+                    I co? Faktycznie pokazują się serwery, da się połączyć.<br>
+                    Myślę sobie - "Super!" - , i dołączam do gry.<br>
+                    I tu zaczyna się te wrażenie sypać...</p>
 
-            <p>Nie ma połączenia z serwerami czatu tekstowego, głosowego, oraz generalnie wszystkich serwerów ds. funkcji społecznościowych.<br>
-            Grę oczywiście przegrałem, ale było ostro, 10-13 czy coś takiego :P</p>
+                    <p>Nie ma połączenia z serwerami czatu tekstowego, głosowego, oraz generalnie wszystkich serwerów ds. funkcji społecznościowych.<br>
+                    Grę oczywiście przegrałem, ale było ostro, 10-13 czy coś takiego :P</p>
 
-            <p>Próbowałem dalej coś tam poprzestawiać, troubleshoot'ować itd., ale nic to nie dało.<br>
-            Duh, nie dało się już nawet wejść do Valorant'a, bo wywalał tysiąc różnych błędów.</p>
+                    <p>Próbowałem dalej coś tam poprzestawiać, troubleshoot'ować itd., ale nic to nie dało.<br>
+                    Duh, nie dało się już nawet wejść do Valorant'a, bo wywalał tysiąc różnych błędów.</p>
 
-            <p>Napisałem parę postów na reddicie na różnych sub'ach z prośbą o pomoc, ale nikt albo nie odpowiadał, albo mi je moderatorzy usuwali (Ciekawe dlaczego?).</p>
+                    <p>Napisałem parę postów na reddicie na różnych sub'ach z prośbą o pomoc, ale nikt albo nie odpowiadał, albo mi je moderatorzy usuwali (Ciekawe dlaczego?).</p>
 
-            <p>Jaka była więc moja kolejna czynność? </p>
+                    <p>Jaka była więc moja kolejna czynność? </p>
 
-            <p>Myślę że łatwo można się tego domyśleć.</p>
+                    <p>Myślę że łatwo można się tego domyśleć.</p>
 
-            <p>- Purfle</p>
+                    <p>- Purfle</p>
 
-            <div style="text-align: center;">
-                <a href="https://imgbb.com/"><img src="https://i.ibb.co/zhmbcKkk/vpn-blog.png" alt="vpn blog" border="0" class="post-image"></a>
+                    <div style="text-align: center;">
+                        <img src="https://i.ibb.co/zhmbcKkk/vpn-blog.png" alt="Schemat połączenia VPN" class="post-image">
+                    </div>
+                </div>
+                <hr>
+                <!-- WPIS_2_END -->
+
+                <!-- WPIS_1_START -->
+                <div class="post">
+                    <h2>Wpis nr 1: Początki</h2>
+                    <p><strong style="color: #FF00FF;">Data:</strong> <span style="color: #FFFF00;">04.04.2026</span></p>
+                    
+                    <p>Zaczynam pisać bloga.<br>
+                    Będzie śmiesznie, bo nie mam kompletnie umiejętności pisania w HTML, ale za to mam darmowy chat-gpt u lewej ręki, i wsparcie reddit'a u prawej xD</p>
+                    
+                    <p>Jeśli chodzi o ogarnięcie strony, github'a i tak dalej, AI poleciło utworzyć "organizację GitHub", i hostowanie stronki przez repo na nią utworzone. Działa? Działa.<br>
+                    Przynajmniej link jest fajny :)</p>
+                    
+                    <p>Kolejny wpis? Raczej jutro :D</p>
+                </div>
+                <hr>
+                <!-- WPIS_1_END -->
+            </div>
+
+            <div class="sidebar">
+                <div class="about-box">
+                    <h3>📌 O MNIE</h3>
+                    <p>
+                        <strong>Purfle</strong><br><br>
+                        🎂 Wiek: 18 lat<br>
+                        🎮 Gry: Valorant, Fortnite<br>
+                        💻 Zainteresowania: IT, coding, retro tech<br>
+                        📍 Lokalizacja: Polska<br><br>
+                        Bloguję o życiu, grach i technologii. Witaj w moim zakątku internetu!
+                    </p>
+                    <hr>
+                    <p style="text-align: center; font-size: 10px;">
+                        ✨ 90s style forever ✨
+                    </p>
+                </div>
+                
+                <div class="about-box">
+                    <h3>🔗 LINKI</h3>
+                    <p style="text-align: center;">
+                        <a href="https://github.com/purfleblog">🐙 GitHub</a><br>
+                        <a href="#">💬 Discord</a><br>
+                        <a href="#">📝 Reddit</a>
+                    </p>
+                </div>
             </div>
         </div>
 
-        <hr>
-
-        <div class="post">
-            <h2>Wpis nr 1: Początki</h2>
-            <p><strong style="color: #FF00FF;">Data:</strong> <span style="color: #FFFF00;">04.04.2026</span></p>
-            
-            <p>Zaczynam pisać bloga.<br>
-            Będzie śmiesznie, bo nie mam kompletnie umiejętności pisania w HTML, ale za to mam darmowy chat-gpt u lewej ręki, i wsparcie reddit'a u prawej xD</p>
-            
-            <p>Jeśli chodzi o ogarnięcie strony, github'a i tak dalej, AI poleciło utworzyć "organizację GitHub", i hostowanie stronki przez repo na nią utworzone. Działa? Działa.<br>
-            Przynajmniej link jest fajny :)</p>
-            
-            <p>Kolejny wpis? Raczej jutro :D</p>
-        </div>
-
-        <hr>
-
         <div class="footer">
-            <p>Twoja ostatnia wizyta: <strong id="data-wizyty" style="color: #FFFF00;">Nigdy</strong></p>
-            <a href="#">Powrót na górę</a>
+            <p>🕐 Twoja ostatnia wizyta: <strong id="data-wizyty" style="color: #FFFF00;">Nigdy</strong></p>
+            
+            <!-- LICZNIK ODWIEDZIN - prosty SVG -->
+            <div class="counter-box">
+                <span class="counter-label">📊 VISITOR COUNT:</span>
+                <div class="counter-value">
+                    <img src="https://hitcounter.pythonanywhere.com/count/tag.svg?url=https://purfleblog.github.io" alt="Visitor count">
+                </div>
+            </div>
+            
+            <p style="margin-top: 15px;"><a href="#">⬆️ Powrót na górę</a></p>
         </div>
 
         <script>
+            function getPolishDate(date) {
+                return date.toLocaleString('pl-PL', {
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit'
+                });
+            }
+
             let dzisiaj = new Date();
-            let ladnaData = dzisiaj.toLocaleString('pl-PL');
-
-            let ostatniaWizyta = localStorage.getItem('moja_data') || 'To twój pierwszy raz!';
-            document.getElementById('data-wizyty').innerText = ostatniaWizyta;
-
-            localStorage.setItem('moja_data', ladnaData);
+            let ladnaData = getPolishDate(dzisiaj);
+            let dataElement = document.getElementById('data-wizyty');
+            
+            if (dataElement) {
+                try {
+                    let test = 'test';
+                    localStorage.setItem(test, test);
+                    localStorage.removeItem(test);
+                    
+                    let ostatniaWizyta = localStorage.getItem('moja_data');
+                    if (ostatniaWizyta === null) {
+                        dataElement.innerText = 'To twój pierwszy raz!';
+                    } else {
+                        dataElement.innerText = ostatniaWizyta;
+                    }
+                    
+                    localStorage.setItem('moja_data', ladnaData);
+                } catch (e) {
+                    dataElement.innerText = 'Brak dostępu do pamięci (tryb prywatny?)';
+                    console.log('localStorage nie jest dostępny:', e);
+                }
+            }
+            
+            const topLink = document.querySelector('a[href="#"]');
+            if (topLink) {
+                topLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
         </script>
     </div>
 </body>
