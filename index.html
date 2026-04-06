@@ -130,29 +130,6 @@
             border-color: #00FF00;
             margin: 10px 0;
         }
-        
-        /* Styl licznika odwiedzin */
-        .counter-box {
-            display: inline-block;
-            background-color: #000000;
-            border: 2px ridge #C0C0C0;
-            padding: 8px 15px;
-            margin-top: 10px;
-        }
-        .counter-label {
-            color: #FFFF00;
-            font-size: 11px;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .counter-value {
-            color: #FF00FF;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .counter-value img {
-            vertical-align: middle;
-        }
     </style>
 </head>
 <body>
@@ -232,63 +209,61 @@
 
             <div class="sidebar">
                 <div class="about-box">
-                    <h3>📌 O MNIE</h3>
+                    <h3>O MNIE</h3>
                     <p>
-                        <strong>Purfle</strong><br><br>
-                        🎂 Wiek: 18 lat<br>
-                        🎮 Gry: Valorant, Fortnite<br>
-                        💻 Zainteresowania: IT, coding, retro tech<br>
-                        📍 Lokalizacja: Polska<br><br>
-                        Bloguję o życiu, grach i technologii. Witaj w moim zakątku internetu!
-                    </p>
-                    <hr>
-                    <p style="text-align: center; font-size: 10px;">
-                        ✨ 90s style forever ✨
+                        <strong>Nick: Purfle</strong><br><br>
+                        Wiek: 18 lat<br>
+                        Ulubione gry: "Stellar Blade", "Team Fortress 2", cała trylogia "Mafia"<br>
+                        Zainteresowania: Drony, szeroko pojęty gaming<br><br>
+                        Ten blog jest moim pierwszym tego typu projektem - ciekawe, jak będzie ewoluował!
                     </p>
                 </div>
                 
                 <div class="about-box">
-                    <h3>🔗 LINKI</h3>
+                    <h3>LINKI</h3>
                     <p style="text-align: center;">
-                        <a href="https://github.com/purfleblog">🐙 GitHub</a><br>
-                        <a href="#">💬 Discord</a><br>
-                        <a href="#">📝 Reddit</a>
+                        <a href="https://github.com/PurflePL">GitHub</a><br>
+                        <a href="https://www.youtube.com/@PurfleTV">YouTube</a>
                     </p>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <p>🕐 Twoja ostatnia wizyta: <strong id="data-wizyty" style="color: #FFFF00;">Nigdy</strong></p>
-            
-            <!-- LICZNIK ODWIEDZIN - prosty SVG -->
-            <div class="counter-box">
-                <span class="counter-label">📊 VISITOR COUNT:</span>
-                <div class="counter-value">
-                    <img src="https://hitcounter.pythonanywhere.com/count/tag.svg?url=https://purfleblog.github.io" alt="Visitor count">
-                </div>
-            </div>
-            
-            <p style="margin-top: 15px;"><a href="#">⬆️ Powrót na górę</a></p>
+            <p>Pierwsza wizyta: <strong id="pierwsza-wizyta" style="color: #FFFF00;">-</strong></p>
+            <p>Twoja ostatnia wizyta: <strong id="data-wizyty" style="color: #FFFF00;">Nigdy</strong></p>
+            <p><a href="#">Powrót na górę strony</a></p>
         </div>
 
         <script>
             function getPolishDate(date) {
-                return date.toLocaleString('pl-PL', {
-                    year: 'numeric', month: '2-digit', day: '2-digit',
-                    hour: '2-digit', minute: '2-digit', second: '2-digit'
-                });
+                let dzien = String(date.getDate()).padStart(2, '0');
+                let miesiac = String(date.getMonth() + 1).padStart(2, '0');
+                let rok = date.getFullYear();
+                let godzina = String(date.getHours()).padStart(2, '0');
+                let minuta = String(date.getMinutes()).padStart(2, '0');
+                let sekunda = String(date.getSeconds()).padStart(2, '0');
+                return `${dzien}.${miesiac}.${rok} ${godzina}:${minuta}:${sekunda}`;
             }
 
             let dzisiaj = new Date();
             let ladnaData = getPolishDate(dzisiaj);
             let dataElement = document.getElementById('data-wizyty');
+            let pierwszaElement = document.getElementById('pierwsza-wizyta');
             
-            if (dataElement) {
+            if (dataElement && pierwszaElement) {
                 try {
                     let test = 'test';
                     localStorage.setItem(test, test);
                     localStorage.removeItem(test);
+                    
+                    let pierwszaWizyta = localStorage.getItem('pierwsza_data');
+                    if (pierwszaWizyta === null) {
+                        localStorage.setItem('pierwsza_data', ladnaData);
+                        pierwszaElement.innerText = ladnaData;
+                    } else {
+                        pierwszaElement.innerText = pierwszaWizyta;
+                    }
                     
                     let ostatniaWizyta = localStorage.getItem('moja_data');
                     if (ostatniaWizyta === null) {
@@ -298,9 +273,11 @@
                     }
                     
                     localStorage.setItem('moja_data', ladnaData);
+                    
                 } catch (e) {
-                    dataElement.innerText = 'Brak dostępu do pamięci (tryb prywatny?)';
-                    console.log('localStorage nie jest dostępny:', e);
+                    dataElement.innerText = 'Brak dostepu do pamieci (tryb prywatny?)';
+                    pierwszaElement.innerText = 'Brak dostepu do pamieci';
+                    console.log('localStorage nie jest dostepny:', e);
                 }
             }
             
