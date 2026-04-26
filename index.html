@@ -35,11 +35,6 @@
             color: #FF0000;
             font-weight: bold;
         }
-        @media (prefers-reduced-motion: reduce) {
-            .blink {
-                animation: none;
-            }
-        }
         @keyframes blinker {
             50% { opacity: 0; }
         }
@@ -74,21 +69,6 @@
             height: auto;
             border: 3px double #00FFFF;
         }
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                padding: 10px;
-            }
-            body {
-                padding: 10px;
-            }
-            .content-wrapper {
-                flex-direction: column;
-            }
-            .sidebar {
-                max-width: 100%;
-            }
-        }
         .posts-container {
             margin-top: 20px;
         }
@@ -105,6 +85,7 @@
         .sidebar {
             flex: 1;
             max-width: 280px;
+            width: 100%;
         }
         
         /* Ramka "O mnie" */
@@ -130,6 +111,33 @@
             border-color: #00FF00;
             margin: 10px 0;
         }
+        
+        /* Responsywność - na telefonie sidebar schodzi pod wpisy */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            body {
+                padding: 10px;
+            }
+            .content-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                max-width: 100%;
+                width: 100%;
+                margin-top: 20px;
+            }
+            .posts-container {
+                width: 100%;
+            }
+            .about-box {
+                width: auto;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -143,6 +151,26 @@
         <div class="content-wrapper">
             <div class="posts-container" id="posts-container">
                 <!-- ZNACZNIK_NOWYCH_WPISOW -->
+
+            <!-- WPIS_4_START -->
+            <div class="post">
+                <h2>Wpis nr 4: Koniec pewnego etapu</h2>
+                <p><strong style="color: #FF00FF;">Data:</strong> <span style="color: #FFFF00;">27.04.2026</span></p>
+                
+                <p>Cześć wszystkim!<br>Kilka dni temu zakończył się pewien etap mojego życia - <strong>ukończyłem liceum</strong>.</p>
+<p>Sam dzień zakończenia był..cóż, powiedzmy że <strong>nie będę go pozytywnie wspominać</strong>.<br>Dotarłem do szkoły na godzinę przed uroczystością, gdyż chciałem dać kwiaty moim ulubionym nauczycielom w podzięce za nauczanie mnie, jednakże okazało się, że uroczystość poprzednich klas czwartych uległa wydłużeniu, i czekałem tak z tymi kwiatami w holu przez prawie godzinę...</p>
+<p>Powinienem był dostać <strong>wyróżnienie za najwyższą frekwencję</strong> z klas 4tych, jednakże go nie dostałem, mimo że osoby które faktyczne wyróżnienie dostały, miały niższą frekwencję niż ja.<br>Jednakże, co ciekawe, <strong>dyplom za najwyższą frekwencję</strong> już dostałem...</p>
+<p>"Dyplom" ukończenia "kursu religijnego" mnie ominął, gdyż na religię nie uczęszczałem, jednakże nie utrudni mi to raczej życia, ślubu kościelnego i tak nigdy bym nie wziął.</p>
+<p>Pewna grupka uczniów z mej klasy wybrała się pod sam koniec, już po uroczystości, na piwo z okazji zakończenia tego etapu w naszym życiu.<br>Postanowiłem wyjść ze strefy komfortu, i wybrać się na tą jakże chwalebną czynność wraz z nimi.<br>Niestety, jak zawsze, zakończyło się to tym, że nikt ze mną nie chciał zbytnio już przy stoliku rozmawiać, nikt nie skłaniał ani szczypty zainteresowania w mą stronę. No nic - takie życie. Powinienem był to przewidzieć.</p>
+<p>Teraz pora na naukę - ostatnia prosta przed maturą. <br>Myślę że jakoś sobie poradzę, chociaż z matematyką <strong>łatwo nie będzie</strong>.</p>
+<p>A co po maturze?<br>Cóż...jeśli zdam, prawdopodobnie udam się na studia, gdyż takie są naciski ze strony mej rodziny.<br>Myślę nad uniwersytetem śląskim, opolskim lub krakowskim - zależy mi wyłącznie na tym, bym był w stanie spotykać się z J nie pokonując dystansu mniej więcej połowy szerokości kraju. 2/5 dadzą radę.</p>
+<p>Jeśli nie zdam, natomiast, zapiszę się na kursy policealne na kierunek "technik kolejarstwa" w katowickim effekcie, które są prowadzone w trybie zaocznym. Podczas tygodnia czeka mnie robota.</p>
+<p>Wychodzę z liceum bez <strong>żadnych nowych znajomości</strong> - nic mnie już więcej w mym mieście nie trzyma, chyba że jeszcze ta cholerna matura. Po niej już autentycznie nic.</p>
+<p>Pragnę się jakoś rozwinąć, otworzyć nowy etap w swoim życiu. <br>Łatwo nie będzie - <strong>trzymajcie kciuki</strong>.</p>
+                
+            </div>
+            <hr>
+            <!-- WPIS_4_END -->
 
             <!-- WPIS_3_START -->
             <div class="post">
